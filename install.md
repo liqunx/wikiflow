@@ -77,9 +77,12 @@ wf-init, wf-search, wf-plan, wf-do, wf-fix, wf-finish
 所有 WikiFlow 技能在执行时必须遵循以下全局约束：
 
 1. **读取配置**：每次执行前读取 `.wikiflow/config.json`，所有路径从配置中获取，不硬编码
-2. **语言**：所有 AI 生成物（spec.md、tasks.md、decisions.md、wiki 页面）和交互过程使用 config 中 `language` 指定的语言（默认 zh-CN）
-3. **代码定位**：通过 config 中 `project.code.root` 定位用户代码目录，通过 `project.code.language` 了解技术栈
-4. **无归档**：`/wf-finish` 编译后直接删除 active 变更，不保留 archive
+2. **环境变量覆盖**：检查系统环境变量和 `.env` 文件（如果存在），用环境变量的值覆盖 config 中的默认值
+3. **语言**：所有 AI 生成物（spec.md、tasks.md、decisions.md、wiki 页面）和交互过程使用 config 中 `language` 指定的语言（默认 zh-CN）
+4. **代码定位**：通过 config 中 `project.code.root` 或 `project.code.repositories` 定位用户代码目录
+5. **无归档**：`/wf-finish` 编译后直接删除 active 变更，不保留 archive
+
+**环境变量支持**：config 中使用 `${WIKIFLOW_XXX_ROOT:-默认值}` 格式时，skill 会自动用环境变量覆盖默认值。
 
 ## 约束
 

@@ -18,6 +18,22 @@ In agile development, requirements "grow" — a simple feature becomes a mini-sy
 4. **Traceable Decisions**: Every "why" is recorded
 5. **You manage docs, AI manages code**: Docs are white-box, code can be black-box
 
+## Document-Code Separation
+
+WikiFlow supports **document repository separated from code repository** mode:
+
+- **Document repository**: Contains `.wikiflow/` and `docs/wiki/`, managed by team/individuals (core assets)
+- **Code repository**: Pure code repository, Git workflow unchanged, managed by company/client
+- Two repositories separated, connected via `.wikiflow/config.json`
+
+**Team Collaboration**: Resolve path conflicts via environment variables. Each team member configures their own code paths, no conflicts in config.json.
+
+```bash
+# .env file (not committed to repository)
+WIKIFLOW_BACKEND_ROOT=/path/to/my/backend
+WIKIFLOW_FRONTEND_ROOT=/path/to/my/frontend
+```
+
 ## Quick Start
 
 ```

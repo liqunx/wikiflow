@@ -25,11 +25,33 @@
           "properties": {
             "root": {
               "type": "string",
-              "description": "代码根目录（如 src/、lib/、app/）"
+              "description": "代码根目录（单仓库模式，如 src/、lib/、app/）"
             },
             "language": {
               "type": "string",
               "description": "主要编程语言"
+            },
+            "repositories": {
+              "type": "array",
+              "description": "多仓库配置（文档代码分离模式）",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "仓库名称（如 backend、frontend）"
+                  },
+                  "root": {
+                    "type": "string",
+                    "description": "代码根目录（支持环境变量：${WIKIFLOW_XXX_ROOT:-默认值}）"
+                  },
+                  "language": {
+                    "type": "string",
+                    "description": "该仓库的编程语言"
+                  }
+                },
+                "required": ["name", "root"]
+              }
             }
           }
         }

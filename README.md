@@ -18,6 +18,22 @@
 4. **决策可追溯**：每个"为什么"都有记录
 5. **人管文档，AI 管代码**：文档是白盒，代码可以是黑盒
 
+## 文档代码分离
+
+WikiFlow 支持**文档仓库与代码仓库分离**模式：
+
+- **文档仓库**：包含 `.wikiflow/`、`docs/wiki/`，由团队/个人管理（核心资产）
+- **代码仓库**：纯代码仓库，Git 工作流不变，由公司/客户管理
+- 两个仓库分离，通过 `.wikiflow/config.json` 建立关联
+
+**团队协作**：通过环境变量解决路径冲突，每个成员配置自己的代码路径，不会在 config.json 上冲突。
+
+```bash
+# .env 文件（不会提交到仓库）
+WIKIFLOW_BACKEND_ROOT=/path/to/my/backend
+WIKIFLOW_FRONTEND_ROOT=/path/to/my/frontend
+```
+
 ## 快速开始
 
 ```
