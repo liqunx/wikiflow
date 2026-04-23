@@ -4,6 +4,10 @@
 
 ## 技能清单
 
+默认安装**核心技能**（6 个）。扩展技能按需单独安装，不包含在一键安装中。
+
+### 核心技能
+
 | 技能 | 用途 | 配套资源 |
 |-------|------|----------|
 | wf-init | 初始化项目 | references/config.schema.json |
@@ -12,6 +16,14 @@
 | wf-do | 执行开发 | — |
 | wf-fix | 修正改进 | references/decisions.md |
 | wf-finish | 编译 Wiki | references/docs.schema.json, current-wiki.md, decision-wiki.md, deprecated-wiki.md, history-wiki.md |
+
+### 扩展技能
+
+| 技能 | 用途 | 说明 |
+|-------|------|------|
+| wf-migrate-openspec | 从 OpenSpec 迁移到 WikiFlow | 一次性使用，迁移后可卸载 |
+
+扩展技能安装命令：`帮我安装 wikiflow 扩展技能 {技能名}，源文件：https://github.com/liqunx/wikiflow/tree/main/skills/{技能名}`
 
 ## 源文件位置
 
@@ -33,7 +45,11 @@ skills/{wf-xxx}/
 
 ### 1. 获取技能文件
 
-从 GitHub 仓库获取 `skills/` 目录下所有文件，包括每个子目录的 `skill.md` 和 `references/` 中的配套资源。
+从 GitHub 仓库获取以下 6 个核心技能目录下的所有文件（跳过 wf-migrate-openspec 等扩展技能）：
+
+wf-init, wf-search, wf-plan, wf-do, wf-fix, wf-finish
+
+每个目录包含 `skill.md` 和 `references/`（如有）。
 
 ### 2. 按平台格式安装
 

@@ -22,7 +22,18 @@
 帮我安装wikiflow，安装指南：https://liqunx.github.io/wikiflow/install.md
 ```
 
-复制以上命令，粘贴到 AI 对话框中发送即可。
+复制以上命令，粘贴到 AI 对话框中发送即可。一键安装包含所有核心技能。
+
+### 核心 vs 扩展
+
+WikiFlow 技能分为两类：
+
+- **核心技能**（一键安装）：wf-init、wf-search、wf-plan、wf-do、wf-fix、wf-finish
+- **扩展技能**（按需单独安装）：一次性工具、迁移工具等
+
+| 扩展技能 | 用途 | 安装命令 |
+|----------|------|----------|
+| wf-migrate-openspec | 从 OpenSpec 迁移到 WikiFlow | `帮我安装 wikiflow 扩展技能 wf-migrate-openspec，源文件：https://github.com/liqunx/wikiflow/tree/main/skills/wf-migrate-openspec` |
 
 ## 工作流
 
@@ -70,32 +81,26 @@
 ```
 wikiflow/
 ├── README.md                          ← 本文件
+├── install.md                         ← AI 安装指南
 └── skills/
-    ├── wf-init/
-    │   ├── skill.md                   ← 初始化
-    │   └── references/
-    │       └── config.schema.json     ← 配置校验（含默认值）
-    ├── wf-search/
-    │   └── skill.md                   ← 查询 Wiki
-    ├── wf-plan/
-    │   ├── skill.md                   ← 制定计划
-    │   └── references/
-    │       ├── spec.md                ← spec 模板
-    │       └── tasks.md               ← tasks 模板
-    ├── wf-do/
-    │   └── skill.md                   ← 执行开发
-    ├── wf-fix/
-    │   ├── skill.md                   ← 修正改进
-    │   └── references/
-    │       └── decisions.md           ← 决策记录模板
-    └── wf-finish/
-        ├── skill.md                   ← 编译 Wiki
-        └── references/
-            ├── docs.schema.json       ← 文档 frontmatter 校验
-            ├── current-wiki.md        ← current 页面模板
-            ├── decision-wiki.md       ← decision 页面模板
-            ├── deprecated-wiki.md     ← deprecated 页面模板
-            └── history-wiki.md        ← history 页面模板
+    ├── wf-init/                       ← 核心
+    │   ├── skill.md
+    │   └── references/config.schema.json
+    ├── wf-search/                     ← 核心
+    │   └── skill.md
+    ├── wf-plan/                       ← 核心
+    │   ├── skill.md
+    │   └── references/{spec.md, tasks.md}
+    ├── wf-do/                         ← 核心
+    │   └── skill.md
+    ├── wf-fix/                        ← 核心
+    │   ├── skill.md
+    │   └── references/decisions.md
+    ├── wf-finish/                     ← 核心
+    │   ├── skill.md
+    │   └── references/{docs.schema.json, current-wiki.md, ...}
+    └── wf-migrate-openspec/           ← 扩展（按需安装）
+        └── skill.md
 ```
 
 ## 用户项目结构
