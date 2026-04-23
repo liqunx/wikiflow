@@ -22,6 +22,7 @@
 | 技能 | 用途 | 说明 |
 |-------|------|------|
 | wf-migrate-openspec | 从 OpenSpec 迁移到 WikiFlow | 一次性使用，迁移后可卸载 |
+| wf-lint | 检查 Wiki 文档质量 | 可重复使用，独立于工作流 |
 
 扩展技能安装命令：`帮我安装 wikiflow 扩展技能 {技能名}，源文件：https://github.com/liqunx/wikiflow/tree/main/skills/{技能名}`
 

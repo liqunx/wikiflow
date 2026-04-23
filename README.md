@@ -36,6 +36,7 @@ WikiFlow 技能分为两类：
 | 扩展技能 | 用途 | 安装命令 |
 |----------|------|----------|
 | wf-migrate-openspec | 从 OpenSpec 迁移到 WikiFlow | `帮我安装 wikiflow 扩展技能 wf-migrate-openspec，源文件：https://github.com/liqunx/wikiflow/tree/main/skills/wf-migrate-openspec` |
+| wf-lint | 检查 Wiki 文档质量（错误、矛盾、孤岛等） | `帮我安装 wikiflow 扩展技能 wf-lint，源文件：https://github.com/liqunx/wikiflow/tree/main/skills/wf-lint` |
 
 ## 工作流
 
