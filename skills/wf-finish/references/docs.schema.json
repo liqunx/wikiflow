@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "WikiFlow Document Schema",
+  "description": "WikiFlow 文档结构的 YAML frontmatter 规范",
+  "definitions": {
+    "currentPage": {
+      "type": "object",
+      "description": "current/ 目录下的页面",
+      "required": ["title", "type", "last_updated"],
+      "properties": {
+        "title": { "type": "string" },
+        "type": { "const": "feature" },
+        "last_updated": { "type": "string", "format": "date" },
+        "tags": { "type": "array", "items": { "type": "string" } },
+        "source": { "type": "string", "description": "来源 changes/active/{slug}" }
+      }
+    },
+    "historyPage": {
+      "type": "object",
+      "description": "history/ 目录下的页面",
+      "required": ["title", "type", "version", "archived_at"],
+      "properties": {
+        "title": { "type": "string" },
+        "type": { "const": "history" },
+        "version": { "type": "integer" },
+        "archived_at": { "type": "string", "format": "date" },
+        "replaced_by": { "type": "string" }
+      }
+    },
+    "deprecatedPage": {
+      "type": "object",
+      "description": "deprecated/ 目录下的页面",
+      "required": ["title", "type", "deprecated_at"],
+      "properties": {
+        "title": { "type": "string" },
+        "type": { "const": "deprecated" },
+        "deprecated_at": { "type": "string", "format": "date" },
+        "replaced_by": { "type": "string" }
+      }
+    },
+    "decisionPage": {
+      "type": "object",
+      "description": "decisions/ 目录下的页面",
+      "required": ["title", "type", "date"],
+      "properties": {
+        "title": { "type": "string" },
+        "type": { "const": "decision" },
+        "date": { "type": "string", "format": "date" },
+        "related_wiki": { "type": "string" }
+      }
+    }
+  }
+}

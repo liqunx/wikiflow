@@ -1,0 +1,61 @@
+# WikiFlow 安装指南
+
+本指南面向 AI 编码助手。用户发送"安装 WikiFlow"后，AI 读取本文件，完成技能安装。
+
+## 技能清单
+
+| 技能 | 用途 | 配套资源 |
+|-------|------|----------|
+| wf-init | 初始化项目 | references/config.schema.json |
+| wf-search | 查询 Wiki | — |
+| wf-plan | 制定计划 | references/spec.md, tasks.md |
+| wf-do | 执行开发 | — |
+| wf-fix | 修正改进 | references/decisions.md |
+| wf-finish | 编译 Wiki | references/docs.schema.json, current-wiki.md, decision-wiki.md, deprecated-wiki.md, history-wiki.md |
+
+## 源文件位置
+
+所有技能文件在 GitHub 仓库的 `skills/` 目录下：
+
+```
+https://github.com/liqunx/wikiflow/tree/main/skills/
+```
+
+每个技能的目录结构：
+
+```
+skills/{wf-xxx}/
+├── skill.md           ← 技能定义（源 truth，不可修改）
+└── references/        ← 配套资源（模板、schema）
+```
+
+## 安装步骤
+
+### 1. 获取技能文件
+
+从 GitHub 仓库获取 `skills/` 目录下所有文件，包括每个子目录的 `skill.md` 和 `references/` 中的配套资源。
+
+### 2. 按平台格式安装
+
+将技能安装到用户当前项目中，按平台规范适配格式：
+
+- **Claude Code**：复制到项目的 `.claude/skills/` 目录，每个技能一个子目录，保持 `skill.md` + `references/` 结构不变
+- **通义灵码**：按灵码技能格式适配，核心指令内容保持不变
+- **Cursor / Windsurf**：按 `.cursor/rules/` 或 `.windsurfrules` 格式适配
+- **其他平台**：根据平台技能/规则格式适配，核心指令内容不可修改
+
+### 3. 安装后提示
+
+安装完成后，提示用户：
+
+```
+✅ WikiFlow 安装完成（6 个技能）
+
+下一步：/wf-init 初始化项目
+```
+
+## 约束
+
+- skill.md 中的指令内容不可修改，只能适配包装格式
+- references/ 中的配套资源必须一并安装
+- 安装后用户执行 `/wf-init` 才能开始使用

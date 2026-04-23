@@ -1,0 +1,139 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "WikiFlow Configuration",
+  "description": "WikiFlow 工作流配置文件",
+  "type": "object",
+  "required": ["version", "project", "paths"],
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "配置版本",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "project": {
+      "type": "object",
+      "description": "项目信息（面向 AI 的配置，用户无需关心）",
+      "required": ["name"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "项目名称"
+        },
+        "code": {
+          "type": "object",
+          "description": "代码路径配置（AI 据此定位和操作代码）",
+          "properties": {
+            "root": {
+              "type": "string",
+              "description": "代码根目录（如 src/、lib/、app/）"
+            },
+            "language": {
+              "type": "string",
+              "description": "主要编程语言"
+            }
+          }
+        }
+      }
+    },
+    "paths": {
+      "type": "object",
+      "description": "目录路径配置",
+      "required": ["docs", "wiki", "raw", "changes"],
+      "properties": {
+        "docs": {
+          "type": "string",
+          "description": "文档根目录",
+          "default": "docs"
+        },
+        "wiki": {
+          "type": "string",
+          "description": "Wiki 知识库目录",
+          "default": "docs/wiki"
+        },
+        "raw": {
+          "type": "string",
+          "description": "原始文档目录（存量系统）",
+          "default": "docs/raw"
+        },
+        "changes": {
+          "type": "string",
+          "description": "变更工作目录",
+          "default": "docs/changes"
+        }
+      }
+    },
+    "wiki": {
+      "type": "object",
+      "description": "Wiki 配置",
+      "properties": {
+        "structure": {
+          "type": "object",
+          "description": "Wiki 子目录名称",
+          "properties": {
+            "current": { "type": "string", "default": "current" },
+            "history": { "type": "string", "default": "history" },
+            "deprecated": { "type": "string", "default": "deprecated" },
+            "decisions": { "type": "string", "default": "decisions" }
+          }
+        },
+        "indexing": {
+          "type": "object",
+          "description": "索引配置",
+          "properties": {
+            "enabled": { "type": "boolean", "default": true },
+            "strategy": {
+              "type": "string",
+              "enum": ["direct", "layered", "rag"],
+              "default": "layered",
+              "description": "索引策略：direct（直接读取）、layered（分层索引）、rag（向量检索）"
+            }
+          }
+        }
+      }
+    },
+    "features": {
+      "type": "object",
+      "description": "功能开关",
+      "properties": {
+        "autoMatchWiki": {
+          "type": "boolean",
+          "default": true,
+          "description": "plan 时自动匹配相关 Wiki"
+        },
+        "autoLint": {
+          "type": "boolean",
+          "default": true,
+          "description": "finish 时自动执行 lint"
+        },
+        "autoCleanup": {
+          "type": "boolean",
+          "default": true,
+          "description": "finish 时自动清理 active 目录"
+        },
+        "keepHistoryVersions": {
+          "type": "integer",
+          "default": 5,
+          "minimum": 1,
+          "maximum": 50,
+          "description": "保留的历史版本数量"
+        }
+      }
+    },
+    "constraints": {
+      "type": "object",
+      "description": "约束规则",
+      "properties": {
+        "requirePlanBeforeDo": {
+          "type": "boolean",
+          "default": true,
+          "description": "do 前必须有 plan"
+        },
+        "requireWikiLinkInPlan": {
+          "type": "boolean",
+          "default": true,
+          "description": "plan 必须关联 Wiki"
+        }
+      }
+    }
+  }
+}
