@@ -119,6 +119,12 @@
         }
       }
     },
+    "language": {
+      "type": "string",
+      "description": "工作流语言：控制 AI 产物（spec.md、tasks.md、wiki 页面等）和交互过程使用的语言",
+      "default": "zh-CN",
+      "examples": ["zh-CN", "en", "ja", "ko"]
+    },
     "constraints": {
       "type": "object",
       "description": "约束规则",

@@ -49,6 +49,8 @@ IF 只有一个 active 变更:
 ### 1. 读取源文件
 
 ```
+读取 .wikiflow/config.json 中的 language 配置，后续所有生成内容使用该语言。
+
 读取 active 变更的所有文件：
   → spec.md（目标、方案、影响范围）
   → tasks.md（任务清单，含完成状态）

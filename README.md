@@ -1,5 +1,7 @@
 # WikiFlow
 
+[English](README.en.md) | **中文**
+
 文档驱动的 AI 工作流协议。
 
 ## 解决什么问题
