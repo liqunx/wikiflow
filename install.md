@@ -62,12 +62,12 @@ wf-init, wf-search, wf-plan, wf-do, wf-fix, wf-finish
 
 ### 3. 安装后提示
 
-安装完成后，提示用户：
+安装完成后，自动提示用户：
 
 ```
-✅ WikiFlow 安装完成（6 个技能）
+✅ WikiFlow 安装完成（6 个核心技能）
 
-下一步：/wf-init 初始化项目
+是否立即初始化当前项目？（/wf-init）
 ```
 
 ## 约束

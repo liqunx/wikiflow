@@ -38,11 +38,7 @@ WikiFlow 技能分为两类：
 ## 工作流
 
 ```
-/wf-init     →  初始化项目（对话配置，创建目录结构）
-     ↓
-/wf-search   →  查询 Wiki，了解背景
-     ↓
-/wf-plan     →  制定计划（自动匹配 Wiki，生成 spec.md + tasks.md）
+/wf-plan     →  制定计划（自动搜索 Wiki，生成 spec.md + tasks.md）
      ↓
 /wf-do       →  AI 执行开发
      ↓
@@ -50,6 +46,8 @@ WikiFlow 技能分为两类：
      ↓
 /wf-finish   →  编译 Wiki（自动处理历史版本、废弃功能、lint）
 ```
+
+> **提示**：`/wf-search` 可在工作流任意阶段使用，用于主动查阅 Wiki。`/wf-plan` 会自动调用搜索，但如果你已执行过 `/wf-search`，`/wf-plan` 会复用已有上下文，不重复搜索。
 
 ### 强约束
 
