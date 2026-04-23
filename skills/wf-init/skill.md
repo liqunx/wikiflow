@@ -13,6 +13,9 @@ description: 初始化 WikiFlow 项目。对话确认配置，创建目录结构
 # 初始化当前项目
 /wf-init
 
+# 仅初始化环境变量文件
+/wf-init --env
+
 # 初始化指定项目
 /wf-init /path/to/project
 ```
@@ -155,18 +158,45 @@ IF 已存在:
     → 提示用户："ℹ️ .gitignore 已包含 .env 相关条目，跳过"
 ```
 
-### 8. 生成 .env.template（可选）
+### 7. 复制 .env.template → .env.example
 
 ```
-如果用户选择环境变量且同意创建模板：
-  → 生成 .env.template 文件
-  → 包含示例环境变量（注释掉或为空）
-  → 用户可以复制为 .env 并填入自己的值
+复制 references/.env.template 到项目根目录的 .env.example：
+  → .env.example 是静态模板，展示环境变量的使用方式
+  → 团队成员可以参考此文件创建自己的 .env
 ```
 
-### 9. 生成 .wikiflow/config.json
+### 8. 处理 .env.example（--env 选项）
 
-按照 references/config.schema.json 中定义的结构和默认值生成配置文件。
+### 8. 处理 .env.example（--env 选项）
+
+如果是 `--env` 模式：
+
+```
+读取项目根目录的 .env.example 文件
+
+IF .env.example 不存在:
+  → 提示用户："未找到 .env.example，请先执行 /wf-init 生成模板"
+  → 退出
+
+IF .env.example 存在:
+  → 询问用户："是否创建或更新 .env 文件？"
+    [ ] 创建 .env（如果不存在）
+    [ ] 更新 .env（如果已存在，覆盖或合并）
+  
+  IF 用户选择创建/更新:
+    → 读取 .env.example 中的环境变量说明
+    → 提取环境变量名称（WIKIFLOW_XXX_ROOT 格式）
+    → 生成 .env 文件（或更新现有 .env）
+    → 对于 .env.example 中的注释和示例，生成对应的 .env 内容
+    → 提示用户："✅ .env 文件已创建/更新，请填入你的实际路径"
+
+输出：
+  → .env 文件路径
+  → 提示用户编辑 .env 填入实际路径
+```
+
+### 10. 输出结果
 
 **多仓库配置示例**：
 
@@ -197,7 +227,7 @@ IF 已存在:
 }
 ```
 
-### 10. 输出结果
+### 9. 生成 .wikiflow/config.json
 
 ```
 ✅ WikiFlow 初始化完成
