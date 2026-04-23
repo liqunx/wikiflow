@@ -37,6 +37,7 @@ WikiFlow skills come in two categories:
 |-----------|---------|-----------------|
 | wf-migrate-openspec | Migrate from OpenSpec to WikiFlow | `Install wikiflow extension wf-migrate-openspec, source: https://github.com/liqunx/wikiflow/tree/main/skills/wf-migrate-openspec` |
 | wf-lint | Check Wiki document quality (errors, contradictions, orphan pages, etc.) | `Install wikiflow extension wf-lint, source: https://github.com/liqunx/wikiflow/tree/main/skills/wf-lint` |
+| wf-update | Update installed WikiFlow skills to latest version | `Install wikiflow extension wf-update, source: https://github.com/liqunx/wikiflow/tree/main/skills/wf-update` |
 
 ## Workflow
 
