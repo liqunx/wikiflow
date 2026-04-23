@@ -1,6 +1,8 @@
 ---
 name: wf-finish
 description: 编译 Wiki，将 active 变更同步到知识库。自动处理历史版本、废弃功能、决策日志，并执行 lint 检查。完成后清理 active 目录。
+metadata:
+  version: 1.0.0
 ---
 
 # /wf-finish - 编译 Wiki
@@ -120,8 +122,8 @@ source: changes/active/{slug}
 ```
 IF 旧 Wiki 存在:
   → 复制旧 Wiki 到 history/{name}-{version}.md
-  → version 从 decisions.md 的数量推断
-  → 示例：history/authentication-v2.md
+  → version 递增（表示第 N 次编译）
+  → 示例：history/authentication-v3.md（第三次编译）
 
   → 检查 history/ 中的版本数量
   → 如果超过配置的 keepHistoryVersions（默认 5）：

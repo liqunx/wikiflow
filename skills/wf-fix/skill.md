@@ -1,6 +1,8 @@
 ---
 name: wf-fix
 description: 修正开发过程中的问题和需求改进。AI 自动判断是 bug 还是需求改进，更新 spec.md 和 tasks.md，生成 decisions.md。仅在 /wf-do 之后使用。
+metadata:
+  version: 1.0.0
 ---
 
 # /wf-fix - 修正改进

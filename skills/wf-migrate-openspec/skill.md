@@ -1,6 +1,8 @@
 ---
 name: wf-migrate-openspec
 description: 从 OpenSpec 迁移到 WikiFlow。检测现有 OpenSpec 结构，转换配置、迁移 Wiki 和 specs。一次性使用。
+metadata:
+  version: 1.0.0
 ---
 
 # /wf-migrate-openspec - 从 OpenSpec 迁移

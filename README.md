@@ -34,6 +34,18 @@ WIKIFLOW_BACKEND_ROOT=/path/to/my/backend
 WIKIFLOW_FRONTEND_ROOT=/path/to/my/frontend
 ```
 
+## 版本管理
+
+WikiFlow 技能使用统一版本号（见每个 skill.md 的 frontmatter）：
+
+- **技能版本**：每个 skill.md 的 `metadata.version` 字段标记版本（如 1.0.0）
+- **核心技能版本**：所有核心技能保持统一版本号
+- **扩展技能版本**：跟随核心技能版本，或独立演进
+- **config.json version**：配置 schema 版本，语义版本字符串（用于检测配置兼容性）
+- **Wiki 页面 version**：整数，表示该 Wiki 页面的编译次数
+
+**更新技能**：执行 `/wf-update` 可更新所有已安装技能到最新版本。
+
 ## 快速开始
 
 ```

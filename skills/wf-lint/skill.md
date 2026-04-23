@@ -1,6 +1,8 @@
 ---
 name: wf-lint
 description: 检查 Wiki 文档质量。查找错误、矛盾点、孤岛文件、废弃残留等。优先检查 current/，必要时扩展到 history/。
+metadata:
+  version: 1.0.0
 ---
 
 # /wf-lint - 文档质量检查

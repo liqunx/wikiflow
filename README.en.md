@@ -34,6 +34,18 @@ WIKIFLOW_BACKEND_ROOT=/path/to/my/backend
 WIKIFLOW_FRONTEND_ROOT=/path/to/my/frontend
 ```
 
+## Version Management
+
+WikiFlow skills use unified versioning (see frontmatter of each skill.md):
+
+- **Skill version**: The `metadata.version` field in each skill.md marks the version (e.g., 1.0.0)
+- **Core skills version**: All core skills maintain the same version number
+- **Extension skills version**: Follow core skills version, or evolve independently
+- **config.json version**: Config schema version, semantic version string (for compatibility check)
+- **Wiki page version**: Integer, indicates compilation count of that Wiki page
+
+**Update skills**: Run `/wf-update` to update all installed skills to latest version.
+
 ## Quick Start
 
 ```

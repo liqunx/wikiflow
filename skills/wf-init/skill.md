@@ -1,6 +1,8 @@
 ---
 name: wf-init
 description: 初始化 WikiFlow 项目。对话确认配置，创建目录结构，生成 config.json。是使用 WikiFlow 的第一步。
+metadata:
+  version: 1.0.0
 ---
 
 # /wf-init - 初始化项目

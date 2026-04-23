@@ -1,6 +1,8 @@
 ---
 name: wf-plan
 description: 制定开发计划，生成 spec.md 和 tasks.md。自动匹配相关 Wiki，强制文档先行。适用于新功能开发、bug 修复、需求改进。不可跳过。
+metadata:
+  version: 1.0.0
 ---
 
 # /wf-plan - 制定计划

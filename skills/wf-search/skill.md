@@ -1,6 +1,8 @@
 ---
 name: wf-search
 description: 查询 Wiki 知识库，了解当前系统实现和历史决策。在制定计划前了解背景，或随时查询项目文档。
+metadata:
+  version: 1.0.0
 ---
 
 # /wf-search - 查询 Wiki

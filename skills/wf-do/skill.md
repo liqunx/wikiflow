@@ -1,6 +1,8 @@
 ---
 name: wf-do
 description: 执行开发计划，按照 tasks.md 逐个完成任务。自动检查 spec.md 是否存在，不存在则先执行 /wf-plan。
+metadata:
+  version: 1.0.0
 ---
 
 # /wf-do - 执行开发
