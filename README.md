@@ -1,6 +1,6 @@
 # WikiFlow
 
-[English](README.en.md) | **中文**
+**中文** | [English](README.en.md)
 
 文档驱动的 AI 工作流协议。
 
@@ -121,8 +121,7 @@ your-project/
 │   │   └── log.md                ← 变更日志
 │   ├── raw/                      ← 原始文档（存量系统）
 │   └── changes/                  ← 工作目录
-│       ├── active/               ← 开发中的变更
-│       └── archive/              ← 已归档的变更
+│       └── active/               ← 开发中的变更（编译后自动清理）
 └── src/                          ← 用户代码（AI 根据 config 定位）
 ```
 

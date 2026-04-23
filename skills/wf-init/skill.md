@@ -62,8 +62,7 @@ IF 已存在:
 ├── raw/
 │   └── 00-uncategorized/ ← 原始文档（存量系统）
 └── changes/
-    ├── active/           ← 开发中的变更
-    └── archive/          ← 已归档的变更
+    └── active/           ← 开发中的变更
 ```
 
 ### 4. 生成 index.md
@@ -129,7 +128,7 @@ IF 已存在:
 创建目录：
   → docs/wiki/{current,history,deprecated,decisions}
   → docs/raw/00-uncategorized
-  → docs/changes/{active,archive}
+  → docs/changes/active
 
 生成文件：
   → docs/wiki/index.md
@@ -142,6 +141,7 @@ IF 已存在:
 
 ## 注意事项
 
+- 遵循 WikiFlow 全局约束（见 install.md）
 - 如果用户项目已有文档，建议先放入 `raw/` 目录，后续通过工作流整理
 - `project.code` 是面向 AI 的配置，用户无需关心代码细节
 - config.json 可随时手动编辑，修改后立即生效

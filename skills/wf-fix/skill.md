@@ -25,8 +25,10 @@ description: 修正开发过程中的问题和需求改进。AI 自动判断是 
 ### 0. 前置检查
 
 ```
+读取 .wikiflow/config.json，获取路径和语言配置。
+
 检查是否有 active 变更：
-  → 扫描 docs/changes/active/
+  → 扫描 {paths.changes}/active/
   → 没有则提示"请先执行 /wf-plan 和 /wf-do"
 ```
 
@@ -142,6 +144,7 @@ IF type === "requirement":
 
 ## 注意事项
 
+- 遵循 WikiFlow 全局约束（见 install.md）
 - AI 自动判断类型，不询问用户
 - Bug 只更新 tasks.md，不生成 decisions.md
 - 需求改进必须更新 spec.md + tasks.md + decisions.md

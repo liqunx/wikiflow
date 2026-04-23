@@ -36,7 +36,6 @@ IF 存在:
     - docs/wiki/ 下的页面（统计数量）
     - specs/ 下的规格文件（统计数量）
     - docs/raw/ 下的原始文档（统计数量）
-    - changes/archive/ 下的归档变更（统计数量）
   → 要求用户确认迁移
 ```
 
@@ -65,8 +64,8 @@ IF openspec/docs/wiki/log.md 存在:
 FOR 每个规格文件:
   → 读取内容
   → 转换为 WikiFlow 的 spec.md 格式（按 wf-plan 的 references/spec.md 模板）
-  → 如果是活跃规格 → 放入 docs/changes/active/{slug}/spec.md
-  → 如果是已归档 → 放入 docs/changes/archive/{slug}/
+  → 如果是活跃规格 → 放入 {paths.changes}/active/{slug}/spec.md
+  → 如果是已归档 → 直接编译到 {paths.wiki}/current/（WikiFlow 不保留 archive）
 ```
 
 ### 4. 迁移 Raw 文档
@@ -81,7 +80,8 @@ IF openspec/docs/raw/ 存在且非空:
 
 ```
 IF openspec/changes/archive/ 存在且非空:
-  → 将内容合并到 docs/changes/archive/
+  → 将归档内容直接编译到 {paths.wiki}/current/（作为历史 Wiki 页面）
+  → WikiFlow 不使用 archive 目录，归档内容统一由 Wiki 管理
 ```
 
 ### 6. 保留参考
@@ -114,10 +114,9 @@ IF openspec/docs/schema/CLAUDE.md 存在:
 ✅ OpenSpec → WikiFlow 迁移完成
 
 迁移统计：
-  → Wiki 页面：{N} 页 → docs/wiki/current/
-  → 规格文件：{N} 个 → docs/changes/
-  → 原始文档：{N} 个 → docs/raw/
-  → 归档变更：{N} 个 → docs/changes/archive/
+  → Wiki 页面：{N} 页 → {paths.wiki}/current/
+  → 规格文件：{N} 个 → {paths.changes}/active/
+  → 原始文档：{N} 个 → {paths.raw}/
 
 下一步：
   → /wf-search "关键词" 验证迁移结果
@@ -126,6 +125,7 @@ IF openspec/docs/schema/CLAUDE.md 存在:
 
 ## 注意事项
 
+- 遵循 WikiFlow 全局约束（见 install.md）
 - 迁移是单向的（OpenSpec → WikiFlow），不提供回迁
 - 迁移前建议确认 git 工作区是干净的（便于回滚）
 - 如果 OpenSpec 中的 specs 格式差异较大，AI 会尽量转换，无法自动转换的会放入 raw/ 保留

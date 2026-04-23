@@ -121,8 +121,7 @@ your-project/
 │   │   └── log.md                ← Changelog
 │   ├── raw/                      ← Raw documents (legacy)
 │   └── changes/                  ← Working directory
-│       ├── active/               ← Active changes
-│       └── archive/              ← Archived changes
+│       └── active/               ← Active changes (auto-cleaned after compile)
 └── src/                          ← User code (AI locates via config)
 ```
 

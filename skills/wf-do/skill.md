@@ -25,7 +25,10 @@ description: 执行开发计划，按照 tasks.md 逐个完成任务。自动检
 ### 0. 前置检查
 
 ```
-扫描 docs/changes/active/ 目录：
+读取 .wikiflow/config.json：
+  → 获取 paths、language、project.code 等配置
+
+扫描 {paths.changes}/active/ 目录：
 
 IF 没有 active 变更:
   → 提示用户先执行 /wf-plan
@@ -56,7 +59,7 @@ IF 只有一个 active 变更:
 ```
 FOR 每个未完成的任务:
   1. 读取任务描述
-  2. 查看相关代码（根据 spec.md 的影响范围）
+  2. 根据 project.code.root 定位代码目录，查看相关代码（根据 spec.md 的影响范围）
   3. 执行任务（修改代码）
   4. 标记任务为已完成（更新 tasks.md）
 
@@ -118,6 +121,7 @@ FOR 每个未完成的任务:
 
 ## 注意事项
 
+- 遵循 WikiFlow 全局约束（见 install.md）
 - 每完成一个任务就更新 tasks.md（标记为已完成）
 - 如果需要修改 specs，提示用户执行 /wf-fix
 - 不自动修改 spec.md（避免意外改变计划）

@@ -25,7 +25,9 @@ description: 编译 Wiki，将 active 变更同步到知识库。自动处理历
 ### 0. 前置检查
 
 ```
-扫描 docs/changes/active/ 目录：
+读取 .wikiflow/config.json，获取 paths、language、wiki 等配置。
+
+扫描 {paths.changes}/active/ 目录：
 
 IF 没有 active 变更:
   → 提示"没有需要编译的变更"
@@ -61,7 +63,7 @@ IF 只有一个 active 变更:
 
 ```
 根据 spec.md 中的"相关 Wiki"字段：
-  → 读取 docs/wiki/current/{name}.md（当前版本）
+  → 读取 {paths.wiki}/{wiki.structure.current}/{name}.md（当前版本）
   → 如果不存在，说明是全新功能
 ```
 
@@ -161,7 +163,7 @@ IF spec.md 中有"废弃功能":
 IF decisions.md 存在:
   → 解析每条决策记录
   → 生成独立的决策文件：
-    docs/wiki/decisions/{YYYY-MM-DD}-{slug}.md
+    {paths.wiki}/{wiki.structure.decisions}/{YYYY-MM-DD}-{slug}.md
   → 格式：
     ---
     title: {决策标题}
@@ -188,7 +190,7 @@ IF decisions.md 存在:
 ### 7. 更新 index.md
 
 ```
-更新 docs/wiki/index.md：
+更新 {paths.wiki}/index.md：
 
 1. 更新 current/ 页面列表
 2. 更新 history/ 页面列表
@@ -248,8 +250,7 @@ IF decisions.md 存在:
 
 ```
 编译完成后：
-  → 将 docs/changes/active/{slug}/ 移到 docs/changes/archive/{slug}/
-  → 或直接删除（根据配置）
+  → 直接删除 {paths.changes}/active/{slug}/
 
   提示用户：
   "✅ active 变更已清理"
@@ -283,7 +284,8 @@ Lint 结果：
 
 ## 注意事项
 
-- 编译后 active 变更会被清理（移到 archive 或删除）
+- 遵循 WikiFlow 全局约束（见 install.md）
+- 编译后 active 变更会被直接删除（不保留 archive）
 - 建议编译前确认所有任务已完成
 - Lint 检查自动修复能修复的问题，需人工确认的会标记
 - 如果编译失败，active 变更不会被清理
