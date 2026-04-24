@@ -34,6 +34,8 @@ WIKIFLOW_BACKEND_ROOT=/path/to/my/backend
 WIKIFLOW_FRONTEND_ROOT=/path/to/my/frontend
 ```
 
+**了解更多**：查看 [docs/philosophy.md](docs/philosophy.md) 了解 WikiFlow 的设计理念和仓库职责划分。
+
 ## 版本管理
 
 WikiFlow 技能使用统一版本号（见每个 skill.md 的 frontmatter）：

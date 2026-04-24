@@ -83,6 +83,44 @@ wf-init, wf-search, wf-plan, wf-do, wf-fix, wf-finish
 5. **无归档**：`/wf-finish` 编译后直接删除 active 变更，不保留 archive
 6. **版本检查**：`/wf-update` 执行时读取每个 skill.md 的 frontmatter，提取 `metadata.version` 字段对比版本
 
+### 文档与代码分离约束（重要）
+
+WikiFlow 基于**文档驱动开发**和**文档代码分离**架构，所有技能必须严格遵守仓库职责划分：
+
+**仓库类型识别**：
+- **文档仓库**：存在 `.wikiflow/config.json` 和 `docs/wiki/` 目录
+- **代码仓库**：存在代码目录（`src/`、`package.json` 等）但不存在 `.wikiflow/`
+
+**职责划分**：
+
+| 操作类型 | 文档仓库 | 代码仓库 |
+|---------|---------|---------|
+| 文档编辑、Wiki 编译 | ✅ 允许 | ❌ 禁止 |
+| spec.md、tasks.md 生成 | ✅ 允许 | ❌ 禁止 |
+| 代码修改、测试、构建 | ❌ 禁止 | ✅ 允许 |
+| Git 操作（仓库自己的） | ✅ 允许 | ✅ 允许 |
+
+**技能执行位置约束**：
+- **wf-plan**：必须在文档仓库执行
+- **wf-do**：在文档仓库执行，但只能操作代码仓库的代码文件
+- **wf-finish**：必须在文档仓库执行
+- **wf-fix**：智能判断（文档修改→文档仓库，代码修改→代码仓库）
+- **wf-search**：必须在文档仓库执行
+- **wf-lint**：必须在文档仓库执行
+- **wf-init**：可在任意仓库执行（初始化时选择）
+
+**跨仓库操作规范**：
+- wf-do 在文档仓库执行（读取 spec.md、tasks.md）
+- AI 通过 paths.code 配置（如 ../wikiflow）操作代码仓库文件
+- 不要求用户切换仓库（避免丢失文档上下文）
+- AI 必须遵守操作边界：
+  - ✅ 文档仓库：读取/修改 spec.md、tasks.md、wiki/
+  - ✅ 代码仓库：修改源代码（通过 paths.code 路径）
+  - ❌ 禁止在文档仓库修改代码文件
+  - ❌ 禁止在代码仓库修改文档文件
+
+**架构文档**：详见 [docs/wiki/current/architecture.md](https://github.com/liqunx/wikiflow/blob/main/docs/wiki/current/architecture.md)
+
 **环境变量支持**：config 中使用 `${WIKIFLOW_XXX_ROOT:-默认值}` 格式时，skill 会自动用环境变量覆盖默认值。
 
 **版本管理**：

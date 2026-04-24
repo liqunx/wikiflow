@@ -1,0 +1,195 @@
+/* Ollama 风格自定义样式 */
+
+:root {
+  /* 黑白配色方案 */
+  --c-black: #000000;
+  --c-white: #ffffff;
+  --c-gray-light: #f5f5f5;
+  --c-gray: #888888;
+  --c-gray-dark: #333333;
+
+  /* 强调色 */
+  --c-primary: #000000;
+  --c-primary-light: #333333;
+
+  /* 字体 */
+  --font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+
+
+/* 全局样式 */
+body {
+  font-family: var(--font-family-base);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 导航栏 - Ollama 风格 */
+.VPNav {
+  background: white !important;
+  border-bottom: none !important;
+}
+
+.VPNavBar {
+  background: white !important;
+  border-bottom: none !important;
+}
+
+
+
+.VPNavBarTitle {
+  display: flex !important;
+  align-items: center;
+}
+
+.VPNavBarTitle .logo {
+  width: 2rem;
+  height: 2rem;
+}
+
+/* 导航链接 */
+.VPNavBarMenu .VPNavMenuLink {
+  color: #000;
+  font-size: 1.125rem;
+  font-weight: 400;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  transition: text-decoration 0.2s;
+}
+
+.VPNavBarMenu .VPNavMenuLink:hover,
+.VPNavBarMenu .VPNavMenuLink:focus {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* 搜索框 */
+.VPSearchBox {
+  background: rgba(0, 0, 0, 0.05) !important;
+  border: 1px solid #f5f5f5 !important;
+  border-radius: 9999px !important;
+  padding: 0.5rem 1rem !important;
+}
+
+.VPSearchBox input {
+  background: transparent !important;
+}
+
+/* 社交链接 */
+.VPNavBarSocialLinks .social-link {
+  color: #000;
+}
+
+/* 按钮样式 */
+.VPButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1.25rem;
+  font-size: 1.125rem;
+  font-weight: 500;
+  border-radius: 9999px;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+}
+
+.VPButton.primary {
+  background: var(--c-black);
+  color: var(--c-white);
+}
+
+.VPButton.primary:hover {
+  background: var(--c-gray-dark);
+  transform: none;
+  box-shadow: none;
+}
+
+.VPButton.secondary {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--c-black);
+  border: 1px solid transparent;
+}
+
+.VPButton.secondary:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+/* 侧边栏 */
+.VPSidebar {
+  border-right: none;
+}
+
+
+
+/* 代码块 */
+div[class*='language-'] {
+  border-radius: 0.75rem;
+  margin: 1.5rem 0;
+  overflow: hidden;
+  border: 1px solid #e5e5e5;
+}
+
+div[class*='language-'] pre {
+  margin: 0;
+  padding: 1.25rem 1.5rem;
+  background: white;
+  color: #737373;
+  overflow-x: auto;
+}
+
+div[class*='language-'] code {
+  font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.25rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+
+  .feature-section {
+    padding: 0 1.5rem 10rem;
+  }
+}
+
+/* 响应式设计 */
+@media (max-width: 960px) {
+  .hero-title {
+    font-size: 2.25rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+
+  .feature-section {
+    padding: 0 1.5rem 10rem;
+  }
+}
+
+/* 暗色模式支持 */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --c-black: #ffffff;
+    --c-white: #000000;
+    --c-gray-light: #1a1a1a;
+    --c-gray: #666666;
+    --c-gray-dark: #e0e0e0;
+  }
+}
+
+.vp-doc :not(pre) > code {
+    border-radius: 4px;
+    padding: 0px 8px !important;
+    background-color: transparent!important;
+    transition: color 0.25s, background-color 0.5s;
+}
