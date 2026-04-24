@@ -3,9 +3,12 @@ name: wf-search
 description: 查询 Wiki 知识库，了解当前系统实现和历史决策。在制定计划前了解背景，或随时查询项目文档。
 metadata:
   version: 1.0.0
+  execution_location: documentation_repository
 ---
 
 # /wf-search - 查询 Wiki
+
+**⚠️ 重要约束：本技能必须在文档仓库中执行**
 
 查询 Wiki 知识库，获取当前系统实现摘要和相关决策记录。
 
@@ -30,6 +33,19 @@ metadata:
 读取 .wikiflow/config.json：
   → 获取 paths.wiki、wiki.structure 等路径配置
   → 获取 language 配置，后续交互使用该语言
+
+**检查当前仓库类型**：
+
+检查当前目录特征：
+  IF 存在 .wikiflow/config.json AND docs/wiki/ 目录:
+    → 当前是文档仓库
+    → ✅ 继续执行
+
+  ELSE:
+    → 当前不是文档仓库
+    → ❌ 错误：wf-search 必须在文档仓库执行
+    → 报错并提示切换到文档仓库
+    → 退出执行
 ```
 
 ### 1. 读取索引

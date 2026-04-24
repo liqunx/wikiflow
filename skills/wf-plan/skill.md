@@ -3,11 +3,16 @@ name: wf-plan
 description: 制定开发计划，生成 spec.md 和 tasks.md。自动匹配相关 Wiki，强制文档先行。适用于新功能开发、bug 修复、需求改进。不可跳过。
 metadata:
   version: 1.0.0
+  execution_location: documentation_repository
 ---
 
 # /wf-plan - 制定计划
 
+**⚠️ 重要约束：本技能必须在文档仓库中执行**
+
 制定开发计划，生成 spec.md 和 tasks.md。自动匹配相关 Wiki，确保开发前了解背景。
+
+**架构依据**：[current/architecture.md](../../docs/wiki/current/architecture.md) - 文档与代码分离
 
 ## 使用方式
 
@@ -31,6 +36,29 @@ metadata:
 
 ```
 读取 .wikiflow/config.json，获取路径和语言配置。
+
+**检查当前仓库类型**：
+
+检查当前目录特征：
+  IF 存在 .wikiflow/config.json AND docs/wiki/ 目录:
+    → 当前是文档仓库
+    → ✅ 继续执行
+
+  ELSE:
+    → 当前不是文档仓库
+    → ❌ 错误：wf-plan 必须在文档仓库执行
+    → 报错并提示：
+      "❌ 操作被拒绝：wf-plan 必须在文档仓库执行
+
+       当前仓库：代码仓库（或无法识别）
+       尝试操作：制定开发计划（生成文档）
+       允许操作：代码修改、测试、构建
+
+       请切换到文档仓库后重试：
+       1. 查找文档仓库目录（如 ../wikiflowDev）
+       2. 切换到文档仓库目录
+       3. 再次执行 /wf-plan"
+    → 退出执行
 
 检查是否存在 active 的变更：
   → 扫描 {paths.changes}/active/

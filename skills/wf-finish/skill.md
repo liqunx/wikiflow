@@ -3,9 +3,12 @@ name: wf-finish
 description: 编译 Wiki，将 active 变更同步到知识库。自动处理历史版本、废弃功能、决策日志，并执行 lint 检查。完成后清理 active 目录。
 metadata:
   version: 1.0.0
+  execution_location: documentation_repository
 ---
 
 # /wf-finish - 编译 Wiki
+
+**⚠️ 重要约束：本技能必须在文档仓库中执行**
 
 将 active 变更编译到 Wiki 知识库，自动处理版本历史、废弃功能和文档检查。
 
@@ -28,6 +31,35 @@ metadata:
 
 ```
 读取 .wikiflow/config.json，获取 paths、language、wiki 等配置。
+
+**检查当前仓库类型**：
+
+检查当前目录特征：
+  IF 存在 .wikiflow/config.json AND docs/wiki/ 目录:
+    → 当前是文档仓库
+    → ✅ 继续执行
+
+  ELSE IF 存在代码目录特征（如 src/、package.json 等）且不存在 .wikiflow/:
+    → 当前是代码仓库
+    → ❌ 错误：wf-finish 必须在文档仓库执行
+    → 报错并提示：
+      "❌ 操作被拒绝：wf-finish 必须在文档仓库执行
+
+       当前仓库：代码仓库（不包含 .wikiflow/ 和 docs/wiki/）
+       尝试操作：编译 Wiki 知识库
+       允许操作：代码修改、测试、构建
+
+       请切换到文档仓库后重试：
+       1. 查找文档仓库目录（如 ../wikiflowDev）
+       2. 切换到文档仓库目录
+       3. 再次执行 /wf-finish"
+    → 退出执行
+
+  ELSE:
+    → ⚠️ 警告：无法确定仓库类型
+    → 询问用户："当前目录不是文档仓库，确定要继续吗？"
+    → 如果用户确认，继续执行
+    → 如果用户取消，退出
 
 扫描 {paths.changes}/active/ 目录：
 
@@ -286,9 +318,19 @@ Lint 结果：
 
 ## 注意事项
 
+**仓库约束**：
+- ✅ 必须在文档仓库执行
+- ✅ 允许操作：文档编辑、Wiki 编译、spec 生成、Git 操作
+- ❌ 禁止操作：代码修改、测试、构建
+
+**执行规范**：
 - 遵循 WikiFlow 全局约束（见 install.md）
 - 编译后 active 变更会被直接删除（不保留 archive）
 - 建议编译前确认所有任务已完成
 - Lint 检查自动修复能修复的问题，需人工确认的会标记
 - 如果编译失败，active 变更不会被清理
 - 可以多次执行 /wf-finish（幂等）
+
+**架构参考**：
+- 文档与代码分离架构：[current/architecture.md](../../docs/wiki/current/architecture.md)
+

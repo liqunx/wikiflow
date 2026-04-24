@@ -3,9 +3,12 @@ name: wf-lint
 description: 检查 Wiki 文档质量。查找错误、矛盾点、孤岛文件、废弃残留等。优先检查 current/，必要时扩展到 history/。
 metadata:
   version: 1.0.0
+  execution_location: documentation_repository
 ---
 
 # /wf-lint - 文档质量检查
+
+**⚠️ 重要约束：本技能必须在文档仓库中执行**
 
 检查 Wiki 知识库中的文档质量问题，包括错误、矛盾、孤岛页面、废弃残留等。
 
@@ -32,6 +35,19 @@ metadata:
 ```
 读取 .wikiflow/config.json：
   → 获取 paths.wiki、wiki.structure、language 等配置
+
+**检查当前仓库类型**：
+
+检查当前目录特征：
+  IF 存在 .wikiflow/config.json AND docs/wiki/ 目录:
+    → 当前是文档仓库
+    → ✅ 继续执行
+
+  ELSE:
+    → 当前不是文档仓库
+    → ❌ 错误：wf-lint 必须在文档仓库执行
+    → 报错并提示切换到文档仓库
+    → 退出执行
 ```
 
 ### 1. 扫描 current/

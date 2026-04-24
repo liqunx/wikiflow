@@ -3,11 +3,14 @@ name: wf-init
 description: 初始化 WikiFlow 项目。对话确认配置，创建目录结构，生成 config.json。是使用 WikiFlow 的第一步。
 metadata:
   version: 1.0.0
+  execution_location: any
 ---
 
 # /wf-init - 初始化项目
 
 初始化 WikiFlow，在用户项目中创建文档驱动的开发环境。
+
+**核心理念**：文档与代码分离 - 人类通过文档指挥 AI，AI 完全接管代码实现。详见 [架构文档](../../docs/wiki/current/architecture.md)。
 
 ## 使用方式
 
@@ -24,10 +27,26 @@ metadata:
 
 ## 文档仓库 vs 代码仓库
 
-WikiFlow 支持**文档代码分离**模式：
-- **文档仓库**：包含 `.wikiflow/`、`docs/wiki/`，由团队/个人管理
-- **代码仓库**：纯代码仓库，Git 工作流不变，由公司/客户管理
-- 两个仓库分离，但通过 `.wikiflow/config.json` 建立关联
+WikiFlow 基于**文档与代码分离**架构：
+
+**核心思想**：
+- 📄 **文档仓库**：人类管理，包含需求、设计、Wiki、开发计划
+- 💻 **代码仓库**：AI 管理，包含源代码、测试、构建
+- 🔗 **关联机制**：通过 `.wikiflow/config.json` 建立关联
+
+**职责划分**：
+- **文档仓库**：
+  - ✅ 编写和维护文档
+  - ✅ 管理开发计划（spec.md + tasks.md）
+  - ✅ 查询 Wiki 知识库
+  - ✅ 编译 Wiki（wf-finish）
+
+- **代码仓库**：
+  - ✅ 修改源代码
+  - ✅ 运行测试和构建
+  - ✅ 代码优化和重构
+
+**了解更多**：[文档与代码分离架构](../../docs/wiki/current/architecture.md)
 
 ## 执行流程
 
